@@ -1,6 +1,8 @@
 
 package com.light.demo.controller;
 
+import com.google.gson.Gson;
+import com.light.demo.model.Message;
 import com.light.demo.mqtt.MQTTConnect;
 import com.light.demo.pojo.Light;
 import com.light.demo.service.LightService;
@@ -43,8 +45,13 @@ public class LightController {
         model.addObject("lightId",lightId);
         model.addObject("strength",strength);
         model.addObject("frequency",frequency);
-        mqttConnect.pub("com/iot/init", "strength"+strength,1);
-        mqttConnect.pub("com/iot/init", "frequency"+frequency,1);
+        Message message = new Message();
+        message.setMsg("修改灯箱参数");
+        message.setStrength(strength);
+        message.setFrequency(frequency);
+        Gson gson=new Gson();
+        String toJson = gson.toJson(message);
+        mqttConnect.pub("com/iot/init", toJson,1);
         model.addObject("success",true);
         model.addObject("errorNo",0);
         return model;
