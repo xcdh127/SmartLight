@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-import com.sankuai.meituan.ccp.framework.core.utils.ExceptionPrintUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +16,7 @@ import java.util.*;
 /**
  * @author liwenhai
  */
+@Slf4j
 public class JsonUtils {
     public static final Logger LOGGER = LoggerFactory.getLogger(JsonUtils.class);
 
@@ -98,7 +99,7 @@ public class JsonUtils {
         try{
             map=toMap(src);
         }catch (Exception e){
-            LOGGER.warn("解析src为Map异常,src:{},e:{}",src, ExceptionPrintUtil.getStackTrace(e));
+            log.warn("解析src为Map异常,src:{},e:{}",src, e);
         }
         return map;
     }
