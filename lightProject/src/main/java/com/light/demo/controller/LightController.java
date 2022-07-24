@@ -27,11 +27,11 @@ public class LightController {
 
     @ResponseBody
     @RequestMapping("/findById/{id}")
-    public Map<String,Object> findById(@PathVariable Integer id){
-        Map<String,Object> map=new HashMap<>();
+    public Map<String, Object> findById(@PathVariable Integer id) {
+        Map<String, Object> map = new HashMap<>();
         Light light = lightService.getById(id);
-        map.put("data",light);
-        map.put("errorNo",0);
+        map.put("data", light);
+        map.put("errorNo", 0);
         return map;
     }
 
@@ -40,42 +40,64 @@ public class LightController {
     public ModelAndView update(@RequestParam Integer lightId,
                                @RequestParam Integer strength,
                                @RequestParam Integer frequency) throws MqttException {
-        ModelAndView model=new ModelAndView("default");
-        lightService.update(lightId,strength,frequency);
-        model.addObject("lightId",lightId);
-        model.addObject("strength",strength);
-        model.addObject("frequency",frequency);
+        ModelAndView model = new ModelAndView("default");
+        lightService.update(lightId, strength, frequency);
+        model.addObject("lightId", lightId);
+        model.addObject("strength", strength);
+        model.addObject("frequency", frequency);
         Message message = new Message();
         message.setMsg("修改灯箱参数");
         message.setStrength(strength);
         message.setFrequency(frequency);
-        Gson gson=new Gson();
+        Gson gson = new Gson();
         String toJson = gson.toJson(message);
-        mqttConnect.pub("com/iot/init", toJson,1);
-        model.addObject("success",true);
-        model.addObject("errorNo",0);
+        mqttConnect.pub("com/iot/init", toJson, 1);
+        model.addObject("success", true);
+        model.addObject("errorNo", 0);
+        return model;
+    }
+
+    @ResponseBody
+    @PostMapping("/updateButton/{lightId}/{strength}/{frequency}")
+    public ModelAndView updateButton(@RequestParam(value = "lightId", required = false, defaultValue = "1") Integer lightId,
+                                     @RequestParam(value = "strength", required = false) Integer strength,
+                                     @RequestParam(value = "frequency", required = false) Integer frequency) throws MqttException {
+        ModelAndView model = new ModelAndView("default");
+        lightService.update(lightId, strength, frequency);
+        model.addObject("lightId", lightId);
+        model.addObject("strength", strength);
+        model.addObject("frequency", frequency);
+        Message message = new Message();
+        message.setMsg("修改灯箱参数");
+        message.setStrength(strength);
+        message.setFrequency(frequency);
+        Gson gson = new Gson();
+        String toJson = gson.toJson(message);
+        mqttConnect.pub("com/iot/init", toJson, 1);
+        model.addObject("success", true);
+        model.addObject("errorNo", 0);
         return model;
     }
 
     @ResponseBody
     @PostMapping("/add/{lightId}/{lightName}/{strength}/{frequency}")
-    public Map<String,Object> add(@PathVariable Integer lightId,
-                                  @PathVariable String lightName,
-                                  @PathVariable Integer strength,
-                                  @PathVariable Integer frequency){
-        Map<String,Object> map=new HashMap<>();
-        Light light=new Light(lightId,lightName,strength,frequency);
+    public Map<String, Object> add(@PathVariable Integer lightId,
+                                   @PathVariable String lightName,
+                                   @PathVariable Integer strength,
+                                   @PathVariable Integer frequency) {
+        Map<String, Object> map = new HashMap<>();
+        Light light = new Light(lightId, lightName, strength, frequency);
         lightService.add(light);
-        map.put("errorNo",0);
+        map.put("errorNo", 0);
         return map;
     }
 
     @ResponseBody
     @DeleteMapping("/delete/{lightId}")
-    public Map<String,Object> delete(@PathVariable Integer lightId){
-        Map<String,Object> map=new HashMap<>();
+    public Map<String, Object> delete(@PathVariable Integer lightId) {
+        Map<String, Object> map = new HashMap<>();
         lightService.delete(lightId);
-        map.put("errorNo",0);
+        map.put("errorNo", 0);
         return map;
     }
 }

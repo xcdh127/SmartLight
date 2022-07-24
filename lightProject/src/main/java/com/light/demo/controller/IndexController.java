@@ -29,4 +29,9 @@ public class IndexController {
         return model;
     }
 
+    @RequestMapping("/buttons")
+    public String buttoms(){
+        return "buttons";
+    }
+
 }
