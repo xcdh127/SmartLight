@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 public class MQTTConnect {
 
     private String HOST = "tcp://broker.emqx.io:1883"; //mqtt服务器的地址和端口号
+/*    private String HOST = "tcp://139.196.135.135:1883"; //mqtt服务器的地址和端口号*/
 //    private final String clientId = "Light" + (int) (Math.random() * 100000000);
     private final String clientId = "Light" + 58882565;
     private MqttClient mqttClient;

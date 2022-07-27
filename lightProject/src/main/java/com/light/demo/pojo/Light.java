@@ -19,4 +19,8 @@ public class Light {
 
     private Integer frequency;
 
+    private String strengthDW;
+
+    private String frequencyDW;
+
 }

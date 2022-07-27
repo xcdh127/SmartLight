@@ -30,8 +30,13 @@ public class IndexController {
     }
 
     @RequestMapping("/buttons")
-    public String buttoms(){
-        return "buttons";
+    public ModelAndView buttoms(){
+        ModelAndView model=new ModelAndView();
+        model.setViewName("buttons");
+        Light light = lightService.getById(1);
+        model.addObject("strength",light.getStrength());
+        model.addObject("frequency",light.getFrequency());
+        return model;
     }
 
 }

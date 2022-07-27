@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:text-align="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>智能照明-后台管理系统</title>
@@ -18,25 +18,54 @@
     <script src="/static/js/button.js"></script>
 </head>
 <body>
-<h1>频率设置</h1>
-<br/>
-<!--<div class="layui-btn-container">-->
-<button id="demo1" class="layui-btn layui-btn-primary layui-border-green" lay-event="one">一档</button>
-<button id="demo2" class="layui-btn layui-btn-primary layui-border-green" lay-event="two">二档</button>
-<button id="demo3" class="layui-btn layui-btn-primary layui-border-green" lay-event="three">三档</button>
-<button id="demo4" class="layui-btn layui-btn-primary layui-border-green" lay-event="four">四挡</button>
-<button id="demo5" class="layui-btn layui-btn-primary layui-border-green" lay-event="five">五档</button>
+
+<div class="layui-tab-content">
+    <div class="layui-tab-item layui-show" style="text-align: center;">
+        <fieldset class="layui-elem-field layui-field-title layui-content">
+            <legend>智能照明-灯箱1号</legend>
+        </fieldset>
+        <div class="layui-field-box">
+            <div style="display: inline-block;width: 100%;">
+                <div class="ht-box layui-bg-blue">
+                    <p th:text="${strength}"></p>
+                    <p>强度信息</p>
+                </div>
+                <div class="ht-box layui-bg-red">
+                    <p th:text="${frequency}"></p>
+                    <p>频率信息</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<table class="layui-hide" id="test" lay-filter="test"></table>
-<br/>
-<h1>强度设置</h1>
-<br/>
-<!--<div class="layui-btn-container">-->
-<button id="demo6" class="layui-btn layui-btn-primary layui-border-green" lay-event="one">一档</button>
-<button id="demo7" class="layui-btn layui-btn-primary layui-border-green" lay-event="two">二档</button>
-<button id="demo8" class="layui-btn layui-btn-primary layui-border-green" lay-event="three">三档</button>
-<button id="demo9" class="layui-btn layui-btn-primary layui-border-green" lay-event="four">四挡</button>
-<button id="demo10" class="layui-btn layui-btn-primary layui-border-green" lay-event="five">五档</button>
-</div>
+
+<if condition="1 eq 2">
+    <h1>频率设置</h1>
+    <br/>
+    <!--<div class="layui-btn-container">-->
+    <button id="demo1" class="layui-btn layui-btn-primary layui-border-green" lay-event="one" >一档</button>
+    <button id="demo2" class="layui-btn layui-btn-primary layui-border-green" lay-event="two">二档</button>
+    <button id="demo3" class="layui-btn layui-btn-primary layui-border-green" lay-event="three">三档</button>
+    <button id="demo4" class="layui-btn layui-btn-primary layui-border-green" lay-event="four">四挡</button>
+    <button id="demo5" class="layui-btn layui-btn-primary layui-border-green" lay-event="five">五档</button>
+    <br/>
+    <h1>强度设置</h1>
+    <br/>
+    <!--<div class="layui-btn-container">-->
+    <button id="demo6" class="layui-btn layui-btn-primary layui-border-green" lay-event="one">一档</button>
+    <button id="demo7" class="layui-btn layui-btn-primary layui-border-green" lay-event="two">二档</button>
+    <button id="demo8" class="layui-btn layui-btn-primary layui-border-green" lay-event="three">三档</button>
+    <button id="demo9" class="layui-btn layui-btn-primary layui-border-green" lay-event="four">四挡</button>
+    <button id="demo10" class="layui-btn layui-btn-primary layui-border-green" lay-event="five">五档</button>
+    <br/>
+    </div>
+    <elseif condition=""/>
+</if>
+
+<if condition="$">
+
+    <elseif condition="1=1"/>
+
+</if>
 </body>
 </html>

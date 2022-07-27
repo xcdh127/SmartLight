@@ -35,6 +35,23 @@ public class LightServiceImpl implements LightService {
     }
 
     @Override
+    public void updateStr(Integer id, Integer strength) {
+        Light light = lightMapper.selectByPrimaryKey(id);
+        light.setStrength(strength);
+        lightMapper.updateByPrimaryKeySelective(light);
+        log.info("更新灯箱信息成功，修改后的强度为:{}",strength);
+
+    }
+
+    @Override
+    public void updateFre(Integer id, Integer frequency) {
+        Light light = lightMapper.selectByPrimaryKey(id);
+        light.setFrequency(frequency);
+        lightMapper.updateByPrimaryKeySelective(light);
+        log.info("更新灯箱信息成功，修改后的频率为:{}",frequency);
+    }
+
+    @Override
     public void delete(Integer id) {
         lightMapper.deleteByPrimaryKey(id);
     }
