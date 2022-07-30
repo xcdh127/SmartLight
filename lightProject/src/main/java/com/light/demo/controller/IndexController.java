@@ -30,12 +30,39 @@ public class IndexController {
     }
 
     @RequestMapping("/buttons")
-    public ModelAndView buttoms(){
+    public ModelAndView buttons(){
         ModelAndView model=new ModelAndView();
         model.setViewName("buttons");
         Light light = lightService.getById(1);
+        String messageStr="";
+        String messageFre="";
         model.addObject("strength",light.getStrength());
         model.addObject("frequency",light.getFrequency());
+        if (light.getStrength()==20){
+            messageStr="一档";
+        }else if (light.getStrength()==40){
+            messageStr="二档";
+        }else if (light.getStrength()==60){
+            messageStr="三档";
+        }else if (light.getStrength()==80){
+            messageStr="四档";
+        }else if (light.getStrength()==100){
+            messageStr="五档";
+        }
+
+        if (light.getFrequency()==20){
+            messageFre="一档";
+        }else if (light.getFrequency()==40){
+            messageFre="二档";
+        }else if (light.getFrequency()==60){
+            messageFre="三档";
+        }else if (light.getFrequency()==80){
+            messageFre="四档";
+        }else if (light.getFrequency()==100){
+            messageFre="五档";
+        }
+        model.addObject("messageStr",messageStr);
+        model.addObject("messageFre",messageFre);
         return model;
     }
 

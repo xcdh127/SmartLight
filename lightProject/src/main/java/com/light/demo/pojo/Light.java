@@ -1,5 +1,11 @@
 package com.light.demo.pojo;
 
+import jdk.nashorn.internal.objects.annotations.Constructor;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class Light {
     private Integer id;
 

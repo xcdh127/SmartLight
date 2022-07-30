@@ -26,18 +26,13 @@ layui.use('table', function () {
     $("#demo1").click(function () {
         $.post("/light/updateButtonFre/1/20", {lightId:1,frequency:20}, function (result) {
             if (result.success) {
-                layer.msg("设置成功！");
-                table.reload("testReload", {
-                    where: {
-                        name: name.val()
-                        , state: state.val()
-                    }
-                });
+                location.reload();
             } else if (result.errorInfo) {
                 layer.msg(result.errorInfo);
             } else {
                 layer.msg("设置失败，请联系管理员！");
             }
+
         }, "json");
     });
 

@@ -164,15 +164,15 @@
             }, "json");
     });*/
 
-    layui.use("form",function () {
+   /* layui.use("form",function () {
         var form = layui.form,layer = layui.layer;
-/*        var strength = $("#strength").val();
-        var frequency = $("#frequency").val();*/
+/!*        var strength = $("#strength").val();
+        var frequency = $("#frequency").val();*!/
         form.on("submit(set)",function (data) {
         var _data = data.field;
         var url = "/light/update";
-       /* var strength= _data.strength;
-        var frequency = _data.frequency;*/
+       /!* var strength= _data.strength;
+        var frequency = _data.frequency;*!/
         var data1 ={};
             $.ajax({
                 type:"POST",
@@ -205,7 +205,7 @@
                 }
             });
     });
-    });
+    });*/
 
 
 </script>
