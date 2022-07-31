@@ -1,11 +1,11 @@
 
 package com.light.demo.controller;
 
-import com.google.gson.Gson;
 import com.light.demo.model.Message;
 import com.light.demo.mqtt.MQTTConnect;
 import com.light.demo.pojo.Light;
 import com.light.demo.service.LightService;
+import com.light.demo.utils.JsonUtils;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,8 +49,7 @@ public class LightController {
         message.setMsg("修改灯箱参数");
         message.setStrength(strength);
         message.setFrequency(frequency);
-        Gson gson = new Gson();
-        String toJson = gson.toJson(message);
+        String toJson = JsonUtils.toJsonString(message);
         mqttConnect.pub("com/iot/init", toJson, 1);
         model.addObject("success", true);
         model.addObject("errorNo", 0);
@@ -60,32 +59,31 @@ public class LightController {
     @ResponseBody
     @PostMapping("/updateButtonStr/{lightId}/{strength}")
     public ModelAndView updateButtonStr(@RequestParam(value = "lightId", required = false, defaultValue = "1") Integer lightId,
-                                     @RequestParam(value = "strength", required = false) Integer strength) throws MqttException {
+                                        @RequestParam(value = "strength", required = false) Integer strength) throws MqttException {
         ModelAndView model = new ModelAndView("buttons");
         lightService.updateStr(lightId, strength);
         Light light = lightService.getById(1);
-        String messageStr="";
-        if (strength==20){
-            messageStr="一档";
+        String messageStr = "";
+        if (strength == 20) {
+            messageStr = "一档";
         } else if (strength == 40) {
-            messageStr="二档";
-        }else if (strength == 60) {
-            messageStr="三档";
-        }else if (strength == 80) {
-            messageStr="四档";
-        }else if (strength == 100) {
-            messageStr="五档";
+            messageStr = "二档";
+        } else if (strength == 60) {
+            messageStr = "三档";
+        } else if (strength == 80) {
+            messageStr = "四档";
+        } else if (strength == 100) {
+            messageStr = "五档";
         }
         model.addObject("lightId", lightId);
         model.addObject("strength", strength);
         model.addObject("frequency", light.getFrequency());
-        model.addObject("messageStr",messageStr);
+        model.addObject("messageStr", messageStr);
         Message message = new Message();
         message.setMsg("修改灯箱参数");
         message.setStrength(strength);
         message.setFrequency(light.getFrequency());
-        Gson gson = new Gson();
-        String toJson = gson.toJson(message);
+        String toJson = JsonUtils.toJsonString(message);
         mqttConnect.pub("com/iot/init", toJson, 1);
         model.addObject("success", true);
         model.addObject("errorNo", 0);
@@ -99,28 +97,27 @@ public class LightController {
         ModelAndView model = new ModelAndView("buttons");
         lightService.updateFre(lightId, frequency);
         Light light = lightService.getById(1);
-        String messageFre="";
-        if (frequency==20){
-            messageFre="一档";
+        String messageFre = "";
+        if (frequency == 20) {
+            messageFre = "一档";
         } else if (frequency == 40) {
-            messageFre="二档";
-        }else if (frequency == 60) {
-            messageFre="三档";
-        }else if (frequency == 80) {
-            messageFre="四档";
-        }else if (frequency == 100) {
-            messageFre="五档";
+            messageFre = "二档";
+        } else if (frequency == 60) {
+            messageFre = "三档";
+        } else if (frequency == 80) {
+            messageFre = "四档";
+        } else if (frequency == 100) {
+            messageFre = "五档";
         }
         model.addObject("lightId", lightId);
         model.addObject("strength", light.getStrength());
         model.addObject("frequency", frequency);
-        model.addObject("messageFre",messageFre);
+        model.addObject("messageFre", messageFre);
         Message message = new Message();
         message.setMsg("修改灯箱参数");
         message.setStrength(light.getStrength());
         message.setFrequency(frequency);
-        Gson gson = new Gson();
-        String toJson = gson.toJson(message);
+        String toJson = JsonUtils.toJsonString(message);
         mqttConnect.pub("com/iot/init", toJson, 1);
         model.addObject("success", true);
         model.addObject("errorNo", 0);
