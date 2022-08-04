@@ -28,7 +28,7 @@ public class MQTTListener implements ApplicationListener<ContextRefreshedEvent> 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         try {
-            server.setMqttClient("h84sWr7GXZw", "d11fe0021cd3470cdfc73c95581dd0c5", new Callback());
+            server.setMqttClient("admin", "public", new Callback());
             server.sub("com/iot/init");
         } catch (MqttException e) {
             log.error(e.getMessage(), e);
