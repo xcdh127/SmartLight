@@ -14,11 +14,12 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class MQTTConnect {
-
-    private String HOST = "tcp://broker-cn.emqx.io:1883"; //mqtt服务器的地址和端口号
-    /*    private String HOST = "tcp://139.196.135.135:1883"; //mqtt服务器的地址和端口号*/
-//    private final String clientId = "Light" + (int) (Math.random() * 100000000);
-    private final String clientId = "Light" + 58882565;
+    private String HOST = "tcp://iot-06z00ex94wrf13x.mqtt.iothub.aliyuncs.com:1883";
+    //private String HOST = "tcp://broker-cn.emqx.io:1883"; //mqtt服务器的地址和端口号
+    //private String HOST = "tcp://139.196.135.135:1883"; //mqtt服务器的地址和端口号
+    //private final String clientId = "Light" + (int) (Math.random() * 100000000);
+    //private final String clientId = "Light" + 58882565;
+    private final String clientId = "h84sWr7GXZw.aa22|securemode=2,signmethod=hmacsha256,timestamp=1659965215191|";
     private MqttClient mqttClient;
 
 
