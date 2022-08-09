@@ -29,10 +29,12 @@ public class MQTTListener implements ApplicationListener<ContextRefreshedEvent> 
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         try {
             //server.setMqttClient("admin", "public", new Callback());
-            server.setMqttClient("aa22&h84sWr7GXZw", "4fdd6aca3e9d965ebb3046d05bd0ecf13f7ce247c90ff3fc15e682437b95bccb", new Callback());
+            server.setMqttClient("aa22&h84sWr7GXZw", "b332838b405a7a921d9ce194947700576a0909af453aa13fc6fb52f21be67ac3", new Callback());
+            //server.setMqttClient("mzh001&h84sWr7GXZw", "2fe1ccd495048ef4b82a6ccfe93bbb42decec9d71cc72342093067159b12f9ce", new Callback());
             //server.sub("com/iot/init");
             server.sub("/h84sWr7GXZw/aa22/user/com/iot/init");
-            server.sub("/sys/h84sWr7GXZw/aa22/thing/event/property/post");
+            server.sub("/sys/h84sWr7GXZw/aa22/thing/service/property/set");
+            //server.sub("/sys/h84sWr7GXZw/mzh001/thing/service/property/set");
         } catch (MqttException e) {
             log.error(e.getMessage(), e);
         }
