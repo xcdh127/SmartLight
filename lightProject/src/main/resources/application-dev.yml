@@ -1,7 +1,7 @@
 spring:
-# 这个匹配url/static/** 请求 都到下面的resources : static-locations里找。
-  mvc :
-    static-path-pattern : /static/**
+  # 这个匹配url/static/** 请求 都到下面的resources : static-locations里找。
+  mvc:
+    static-path-pattern: /static/**
   #跟据配置前后顺序找资源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver

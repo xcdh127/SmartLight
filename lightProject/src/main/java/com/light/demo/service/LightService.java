@@ -17,7 +17,7 @@ public interface LightService {
     public void updateStr(Integer id, Integer strength);
 
     //修改灯箱的频率
-    public void updateFre(Integer id,Integer frequency);
+    public void updateFre(Integer id, Integer frequency);
 
 
     //删除灯箱设置

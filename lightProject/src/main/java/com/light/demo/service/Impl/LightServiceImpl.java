@@ -31,7 +31,7 @@ public class LightServiceImpl implements LightService {
         light.setStrength(strength);
         light.setFrequency(frequency);
         lightMapper.updateByPrimaryKeySelective(light);
-        log.info("更新灯箱信息成功，修改后的强度为:{}，修改后的频率为:{}",strength,frequency);
+        log.info("更新灯箱信息成功，修改后的强度为:{}，修改后的频率为:{}", strength, frequency);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class LightServiceImpl implements LightService {
         Light light = lightMapper.selectByPrimaryKey(id);
         light.setStrength(strength);
         lightMapper.updateByPrimaryKeySelective(light);
-        log.info("更新灯箱信息成功，修改后的强度为:{}",strength);
+        log.info("更新灯箱信息成功，修改后的强度为:{}", strength);
 
     }
 
@@ -48,15 +48,13 @@ public class LightServiceImpl implements LightService {
         Light light = lightMapper.selectByPrimaryKey(id);
         light.setFrequency(frequency);
         lightMapper.updateByPrimaryKeySelective(light);
-        log.info("更新灯箱信息成功，修改后的频率为:{}",frequency);
+        log.info("更新灯箱信息成功，修改后的频率为:{}", frequency);
     }
 
     @Override
     public void delete(Integer id) {
         lightMapper.deleteByPrimaryKey(id);
     }
-
-
 
 
 }
