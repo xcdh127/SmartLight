@@ -77,5 +77,5 @@ layui.use('table', function () {
 function toButtons() {
     setTimeout(function () {
         window.location.href = '/buttons';
-    }, 100);
+    }, 3000);
 }
