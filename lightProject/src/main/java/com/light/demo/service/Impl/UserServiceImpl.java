@@ -14,22 +14,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUserName(String userName) {
-        return null;
+        return userMapper.selectByUserName(userName);
     }
 
     @Override
     public User findByEmail(String email) {
-        return null;
+        return userMapper.selectByEmail(email);
     }
 
     @Override
     public void save(User user) {
+        userMapper.insert(user);
 
     }
 
     @Override
     public User findByUserId(Integer id) {
-        return null;
+        return userMapper.selectByPrimaryKey(id);
     }
 
     @Override

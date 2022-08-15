@@ -20,7 +20,7 @@ function login() {
             shade : 0.8, //遮罩
 
             shadeClose : true, //开启遮罩关闭
-            content : '/user/login.html', //这里content是一个Url
+            content : 'user/toLogin', //这里content是一个Url
         });
     });
 }
@@ -39,7 +39,7 @@ function register() {
             move : false, //禁止拖拽
             shade : 0.8, //遮罩
             shadeClose : true, //开启遮罩关闭
-            content : '/user/register.html', //这里content是一个Url
+            content : 'user/toRegister', //这里content是一个Url
         });
     });
 }

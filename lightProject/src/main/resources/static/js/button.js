@@ -82,5 +82,5 @@ layui.use('table', function () {
 function toButtons() {
     setTimeout(function () {
         window.location.href = '/buttons';
-    }, 3000);
+    }, 2000);
 }

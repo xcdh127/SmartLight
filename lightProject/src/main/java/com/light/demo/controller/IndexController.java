@@ -65,4 +65,15 @@ public class IndexController {
         model.addObject("messageFre", messageFre);
         return model;
     }
+
+    @RequestMapping("/user/toRegister")
+    public String toRegister() {
+        return "register";
+    }
+
+    @RequestMapping("/user/toLogin")
+    public String toLogin() {
+        return "login";
+    }
+
 }
