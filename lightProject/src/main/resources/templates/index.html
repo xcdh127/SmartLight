@@ -1,42 +1,105 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <title>Layui</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
-    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+    <meta charset="UTF-8">
+    <title>java资源分享网</title>
+    <!--引入图标-->
+    <link rel="shortcut icon" href="/static/foreground/images/logomin.png" type="imge/x-icon">
+    <!--引入layui.css-->
+    <link rel="stylesheet" href="/static/foreground/layui/css/layui.css">
+    <!--引入global.css-->
+    <link rel="stylesheet" href="/static/foreground/css/global.css">
+    <!--引入js-->     ··
+    <script src="/static/static/js/jquery-1.8.3.min.js"></script>
+
+    <script src="/static/foreground/layui/layui.js"></script>
+    <script src="/static/js/index.js"></script>
 </head>
 <body>
-<script src="https://www.layuicdn.com/layui/layui.js"></script>
-
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-    <legend>亮度调节</legend>
-</fieldset>
-<div>
-    <div id="slideTest1" class="demo-slider"></div>
-    <div class="layui-btn-container">
-        <button type="button" class="layui-btn layui-btn-radius">默认按钮</button>
+<div th:replace="common/header::#h"></div>
+<div class="fly-panel fly-column" style="height: auto;">
+    <div class="layui-container">
+        <ul class="layui-clear" th:utext="${arcTypeStr}"></ul>
     </div>
 </div>
+<div class="layui-container">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="fly-panel" style="margin-bottom: 0;border-radius:10px;padding-left: 10px;">
+                <a href="/buyVIP" style="color: red;line-height:30px;text-align:center;">南京邮电大学提醒您！欢迎上传资源，成为本站VIP，一起交流，共同进步，早日走上人生巅峰！</a>
+            </div>
+        </div>
 
+        <div class="layui-col-md4">
+            <div class="fly-panel">
+                <form class="layui-form" action="/article/search">
+                    <input type="text" style="width: 80%;display:inline;" th:value="${keywords}" id="keywords" name="keywords" lay-filter="searchInput" lay-verify="required" required
+                           placeholder="输入关键词搜索" autocomplete="off" class="layui-input">
+                    <button class="layui-btn layui-btn-warm layui-btn-radius layui-btn-sm" lay-submit=""><i class="layui-icon">&#xe615;</i>搜索</button>
+                </form>
+            </div>
 
-<script src="../layui/dist/layui.js" charset="utf-8"></script>
-<script>
-    layui.use(['slider'], function () {
-        //当滑块为普通模式，回调返回的 value 是一个数值
-        layui.slider.render({
-            elem: '#slideTest1'
-            , change: function (value) {
-                console.log(value) //动态获取滑块数值
-                //do something
-            }
-        });
+            <div class="fly-panel">
+                <h3 class="fly-panel-title">下载排行</h3>
+                <ul class="fly-panel-main fly-list-static">
+                    <li th:each="article : ${application.clickArticle}">
+                        <a th:href="@{'/article/detail/'+${article.articleId}+'.html'}" target="_blank" th:text="${article.name}"></a>
+                    </li>
+                </ul>
+            </div>
+
+            <dl class="fly-panel fly-list-one">
+                <dt class="fly-panel-title">最新排行</dt>
+                <dd th:each="article : ${application.newArticle}">
+                    <a th:href="@{'/article/detail/'+${article.articleId}+'.html'}" target="_blank" th:text="${article.name}"></a>
+                    <span><i class="iconfont" title="人气">&#xe60b;</i><span th:text="${article.click}"></span> </span>
+                </dd>
+            </dl>
+
+            <dl class="fly-panel fly-list-one">
+                <dt class="fly-panel-title">热搜排行</dt>
+                <dd th:each="article : ${application.randomArticle}">
+                    <a th:href="@{'/article/detail/'+${article.articleId}+'.html'}" target="_blank" th:text="${article.name}"></a>
+                    <span><i class="iconfont" title="人气">&#xe60b;</i><span th:text="${article.click}"></span> </span>
+                </dd>
+            </dl>
+
+            <div class="fly-panel fly-link">
+                <dt class="fly-panel-title">友情链接</dt>
+                <dl class="fly-panel-main">
+                    <dd th:each="link : ${application.linkList}">
+                        <a th:href="@{${link.linkUrl}}" target="_blank" th:text="${link.linkName}"></a>
+                    </dd>
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=2839846578&site=qq&menu=yes" class="fly-link">申请友链</a>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="common/footer.html::#f"></div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(function () {
+        var user=[[${session.currentUser}]];
+        if(user!=null && user.userName == null && user.email == null){
+            layui.use('layer',function () {
+                var layer=layui.layer;
+                layer.open({
+                    type:2,
+                    title:false,
+                    area:['450px','280px'],     //宽高
+                    closeBtn : 0,               //不显示关闭按钮
+                    scrollbar:false,            //禁止浏览器出现滚动条
+                    resize:false,               //禁止拉伸
+                    move:false,                 //禁止拖拽
+                    shade:0.8,                  //遮罩
+                    shadeClose:false,           //开启遮罩关闭
+                    content:"/user/bindEmail.html",
+                });
+            });
+        }
     });
-
+    /*]]>*/
 </script>
 
 </body>

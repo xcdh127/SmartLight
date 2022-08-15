@@ -64,7 +64,9 @@ public class LightController {
         lightService.updateStr(lightId, strength);
         Light light = lightService.getById(1);
         String messageStr = "";
-        if (strength == 20) {
+        if (strength == 0) {
+            messageStr = "零档";
+        } else if (strength == 20) {
             messageStr = "一档";
         } else if (strength == 40) {
             messageStr = "二档";

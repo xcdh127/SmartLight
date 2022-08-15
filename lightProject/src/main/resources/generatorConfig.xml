@@ -47,8 +47,11 @@
              <columnOverride column="detail" jdbcType="VARCHAR" />
              <columnOverride column="sub_images" jdbcType="VARCHAR" />
          </table>-->
-        <table tableName="light" domainObjectName="Light" enableCountByExample="false" enableDeleteByExample="false"
+        <!--<table tableName="light" domainObjectName="Light" enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"/>
-
+-->
+        <table tableName="user" domainObjectName="User" enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false"/>
+        <!--在命令行敲入如下命令：mvn mybatis-generator:generate-->
     </context>
 </generatorConfiguration>

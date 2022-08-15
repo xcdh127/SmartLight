@@ -48,6 +48,11 @@ layui.use('table', function () {
         }, "json");
     });
 
+    $("#demo0").click(function () {
+        $.post("/light/updateButtonStr/1/0", {lightId: 1, strength: 0}, function (result) {
+        }, "json");
+    });
+
     $("#demo6").click(function () {
         $.post("/light/updateButtonStr/1/20", {lightId: 1, strength: 20}, function (result) {
         }, "json");
