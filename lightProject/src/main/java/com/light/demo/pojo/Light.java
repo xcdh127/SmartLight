@@ -1,18 +1,18 @@
 package com.light.demo.pojo;
 
-import jdk.nashorn.internal.objects.annotations.Constructor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
 public class Light {
+    //灯的编号
     private Integer id;
-
+    //灯的名字
     private String name;
-
+    //强度
     private Integer strength;
-
+    //频率
     private Integer frequency;
 
     public Integer getId() {
