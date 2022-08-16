@@ -2,9 +2,6 @@
     <!-- 未登录状态 -->
     <ul th:if="${session.currentUser == null}" class="layui-nav fly-nav-user">
         <li class="layui-nav-item">
-            <a class="iconfont icon-touxiang layui-hide-xs" href="javascript:login()"></a>
-        </li>
-        <li class="layui-nav-item">
             <a href="javascript:login()">登录</a>
         </li>
         <li class="layui-nav-item">
