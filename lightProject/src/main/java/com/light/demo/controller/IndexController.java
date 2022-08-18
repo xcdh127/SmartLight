@@ -91,4 +91,10 @@ public class IndexController {
         return "dianliang";
     }
 
+    @RequestMapping("/toZheXian")
+    public String toZheXian() {
+        return "zhexian";
+    }
+
+
 }

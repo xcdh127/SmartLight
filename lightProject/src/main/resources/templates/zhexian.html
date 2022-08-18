@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>智能照明-后台管理系统</title>
+    <link rel="stylesheet" type="text/css" href="/static/fsLayui/css/fs.css?v=1.8.2" media="all"/>
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css"/>
+    <!--引入图标-->
+    <link rel="shortcut icon" href="/static/foreground/images/logomin.png" type="imge/x-icon">
+    <!--引入layui.css-->
+    <link rel="stylesheet" href="/static/foreground/layui/css/layui.css">
+    <!--引入global.css-->
+    <link rel="stylesheet" href="/static/foreground/css/global.css">
+    <!--引入js-->
+    <script src="/static/js/jquery-1.8.3.min.js"></script>
+    <script src="/static/foreground/layui/layui.js"></script>
+    <script src="/static/js/index.js"></script>
+    <script src="/static/js/button.js"></script>
+    <script src="/static/js/echarts.min.js"></script>
+</head>
+<body>
+<script type="text/html" id="echartsForm">
+    <form lay-filter="echartsForm" class="layui-form" >
+        <div id="speedChart" >
+            <div id="speedChartMain" style="width: 700px; height: 450px;"></div>
+        </div>
+        <div class="layui-form-item text-right">
+            <button class="layui-btn layui-btn-primary" style="margin-right: 4%;background-color:#6cb8a9" type="button" ew-event="closeDialog" >关闭</button>
+        </div>
+    </form>
+</script>
+<script type="text/javascript">
+    /*折线表的顶部类目名称集合*/
+    var legendData=['提交量','入库量','成功量'];
+    /*折线表数据，鼠标移动到折线表某个节点时也会展示*/
+    var seriesData=[];
+
+    /*获取num天之前的日期*/
+    function getBeforeDateByNum(num) {
+        var today = new Date();
+        today.setTime(today.getTime()-(num*24*60*60*1000));
+        var year= today.getFullYear();
+        var month=today.getMonth();
+        month = month + 1;
+        var date =today.getDate();
+        if (month < 10) month = "0" + month;
+        if (date < 10) date = "0" + date;
+        return  (year+"-" + month+"-" +date);
+    }
+
+    /*获取echarts图表x轴节点说明*/
+    function getEchartsxAxis() {
+        var data=[];
+        for(var i=7;i>=1;i--){
+            var beforDate=getBeforeDateByNum(i);
+            beforDate=beforDate.replace(new Date().getFullYear()+"-","");
+            data.push(beforDate)
+        }
+        return data;
+    }
+
+    /*echarts图表获取所有数据*/
+    function getEchartAll(id) {
+        var returnList = [];
+        /*请求后台数据，这里封装了ajax*/
+        admin.syncReq('xxx/xxx', {
+            dataPipeId: id
+        }, function (res) {
+            seriesData = [
+                {
+                    name: "提交量",
+                    type: "line",
+                    data: res.allCountList
+                },
+                {
+                    name: "入库量",
+                    type: "line",
+                    data: res.incountList
+                }, {
+                    name: "成功量",
+                    type: "line",
+                    data: res.succesedcountList
+                }
+            ];
+        }, 'POST', false);
+        return returnList;
+    }
+
+    /*加载echarts图表*/
+    function load() {
+        // 基于准备好的dom，初始化echarts实例
+        var myChart =echarts.init(document.getElementById("speedChartMain"));
+        var option = {
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data:legendData
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: getEchartsxAxis()
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series:seriesData
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option)
+    }
+
+    /*操作栏点击事件显示折线图弹窗*/
+    function showEcharts(data) {
+        layer.open({
+            type: 5,
+            area: '55%',
+            title:  '一周数据变化',
+            offset: '5%',
+            content: $('#echartsForm').html(),
+            success: function (){
+                /*根据数据表id从后台获取数据*/
+                getEchartAll(data.id);
+                /*渲染表格*/
+                load();
+            }
+        });
+    }
+</script>
+</body>
