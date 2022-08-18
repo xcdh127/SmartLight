@@ -3,10 +3,12 @@ package com.light.demo.service.Impl;
 import com.light.demo.dao.MessageMapper;
 import com.light.demo.pojo.Message;
 import com.light.demo.service.MessageService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class MessageServiceImpl implements MessageService {
 
     @Autowired
@@ -29,7 +31,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Message selectByPrimaryKey(Integer messageId) {
-        return messageMapper.selectByPrimaryKey(messageId)
+        return messageMapper.selectByPrimaryKey(messageId);
     }
 
     @Override

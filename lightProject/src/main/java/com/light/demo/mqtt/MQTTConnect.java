@@ -117,7 +117,7 @@ public class MQTTConnect {
     /**
      * main函数自己测试用
      */
-    public static void main(String[] args) throws MqttException {
+    /*public static void main(String[] args) throws MqttException {
 
         MQTTConnect mqttConnect = new MQTTConnect();
         mqttConnect.setMqttClient("admin", "public", new Callback());
@@ -125,5 +125,5 @@ public class MQTTConnect {
         for (int i = 0; i < 5; i++) {
             mqttConnect.pub("com/iot/init", "SmartLight" + (int) (Math.random() * 100000000));
         }
-    }
+    }*/
 }
