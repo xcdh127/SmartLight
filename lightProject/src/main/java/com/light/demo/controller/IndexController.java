@@ -76,4 +76,19 @@ public class IndexController {
         return "login";
     }
 
+    @RequestMapping("/toWeiZhi")
+    public String toWeiZhi() {
+        return "weizhi";
+    }
+
+    @RequestMapping("/toXinXi")
+    public String toXinXi() {
+        return "xinxi";
+    }
+
+    @RequestMapping("/toDianLiang")
+    public String toDianLiang() {
+        return "dianliang";
+    }
+
 }
