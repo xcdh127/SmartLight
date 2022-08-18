@@ -50,7 +50,9 @@
         <!--<table tableName="light" domainObjectName="Light" enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"/>
 -->
-        <table tableName="user" domainObjectName="User" enableCountByExample="false" enableDeleteByExample="false"
+        <!--<table tableName="user" domainObjectName="User" enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false"/>-->
+        <table tableName="message" domainObjectName="Message" enableCountByExample="false" enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"/>
         <!--在命令行敲入如下命令：mvn mybatis-generator:generate-->
     </context>

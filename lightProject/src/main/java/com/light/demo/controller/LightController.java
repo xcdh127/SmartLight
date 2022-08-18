@@ -1,7 +1,7 @@
 
 package com.light.demo.controller;
 
-import com.light.demo.model.Message;
+import com.light.demo.pojo.Message;
 import com.light.demo.mqtt.MQTTConnect;
 import com.light.demo.pojo.Light;
 import com.light.demo.service.LightService;
