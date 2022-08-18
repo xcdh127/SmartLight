@@ -47,13 +47,15 @@ public class Callback implements MqttCallback {
     public void messageArrived(String topic, MqttMessage message) throws Exception {
         //  TODO    此处可以将订阅得到的消息进行业务处理、数据存储
         log.info("收到来自 " + topic + " 的消息：{}", new String(message.getPayload()));
-        String messageStr = new String(message.getPayload());
-        Message meg = JsonUtils.parseJson(messageStr, Message.class);
-        ApplicationContext context = SpringUtil.context;  //获取Spring容器
-        MessageService messageService = context.getBean(MessageService.class);  //获取bean
-        //先查询数据库，如果没有这一条记录，插入到数据库中
-        if (messageService.selectByPrimaryKey(meg.getMessageId()) == null) {
-            messageService.insert(meg);
+        if (topic.equals("com/iot/message")) {
+            String messageStr = new String(message.getPayload());
+            Message meg = JsonUtils.parseJson(messageStr, Message.class);
+            ApplicationContext context = SpringUtil.context;  //获取Spring容器
+            MessageService messageService = context.getBean(MessageService.class);  //获取bean
+            //先查询数据库，如果没有这一条记录，插入到数据库中
+            if (messageService.selectByPrimaryKey(meg.getMessageId()) == null) {
+                messageService.insert(meg);
+            }
         }
     }
 }
