@@ -51,7 +51,10 @@ public class Callback implements MqttCallback {
         Message meg = JsonUtils.parseJson(messageStr, Message.class);
         ApplicationContext context = SpringUtil.context;  //获取Spring容器
         MessageService messageService = context.getBean(MessageService.class);  //获取bean
-        messageService.insert(meg);
+        //先查询数据库，如果没有这一条记录，插入到数据库中
+        if (messageService.selectByPrimaryKey(meg.getMessageId()) == null) {
+            messageService.insert(meg);
+        }
     }
 }
 
