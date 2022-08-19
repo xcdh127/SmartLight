@@ -11,6 +11,8 @@ public class Message {
 
     private Integer humidity;
 
+    private String date;
+
     public Long getMessageId() {
         return messageId;
     }
@@ -49,5 +51,13 @@ public class Message {
 
     public void setHumidity(Integer humidity) {
         this.humidity = humidity;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

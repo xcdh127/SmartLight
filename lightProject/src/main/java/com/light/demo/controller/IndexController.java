@@ -1,7 +1,9 @@
 package com.light.demo.controller;
 
 import com.light.demo.pojo.Light;
+import com.light.demo.pojo.Message;
 import com.light.demo.service.LightService;
+import com.light.demo.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,9 @@ public class IndexController {
 
     @Autowired
     private LightService lightService;
+
+    @Autowired
+    private MessageService messageService;
 
     @RequestMapping("/")
     public String index() {
@@ -94,6 +99,31 @@ public class IndexController {
     @RequestMapping("/toZheXian")
     public String toZheXian() {
         return "zhexian";
+    }
+
+    @RequestMapping("/xinxi")
+    public ModelAndView xinxi() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("xinxi");
+        Message message = messageService.selectLastInsert();
+        String messageStr = "";
+        String messageFre = "";
+        model.addObject("strength", message.getStrength());
+        model.addObject("temperature", message.getTemperature());
+        model.addObject("humidity", message.getHumidity());
+        if (message.getStrength() == 20) {
+            messageStr = "一档";
+        } else if (message.getStrength() == 40) {
+            messageStr = "二档";
+        } else if (message.getStrength() == 60) {
+            messageStr = "三档";
+        } else if (message.getStrength() == 80) {
+            messageStr = "四档";
+        } else if (message.getStrength() == 100) {
+            messageStr = "五档";
+        }
+        model.addObject("messageStr", messageStr);
+        return model;
     }
 
 

@@ -26,25 +26,25 @@
         </fieldset>
         <div class="ht-box layui-bg-blue">
             <p>强度信息</p>
-            <p th:text="${strength}"></p>
+            <p th:text="${strength}">%</p>
             <p th:text="${messageStr}"></p>
         </div>
-        <div class="ht-box layui-bg-red">
+       <!-- <div class="ht-box layui-bg-red">
             <p>频率信息</p>
             <p th:text="${frequency}"></p>
             <p th:text="${messageFre}"></p>
-        </div>
+        </div>-->
         <div class="ht-box layui-bg-orange">
             <p>用电量</p>
             <p th:text=100>kW·h</p>
         </div>
         <div class="ht-box layui-bg-green">
             <p>温度</p>
-            <p th:text=30>℃</p>
+            <p th:text="${temperature}">℃</p>
         </div>
         <div class="ht-box layui-bg-cyan">
-            <p>温度</p>
-            <p th:text=45>%RH</p>
+            <p>湿度</p>
+            <p th:text="${humidity}">%RH</p>
         </div>
     </div>
 </div>

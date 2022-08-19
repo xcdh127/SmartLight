@@ -1,9 +1,10 @@
 package com.light.demo.mqtt;
 
-import com.light.demo.config.SpringUtil;
+import com.light.demo.utils.SpringUtil;
 import com.light.demo.pojo.Message;
 
 import com.light.demo.service.MessageService;
+import com.light.demo.utils.DateUtil;
 import com.light.demo.utils.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
@@ -50,6 +51,8 @@ public class Callback implements MqttCallback {
         if (topic.equals("com/iot/message")) {
             String messageStr = new String(message.getPayload());
             Message meg = JsonUtils.parseJson(messageStr, Message.class);
+            String dateStr = DateUtil.getCurrentDateStr();
+            meg.setDate(dateStr);
             ApplicationContext context = SpringUtil.context;  //获取Spring容器
             MessageService messageService = context.getBean(MessageService.class);  //获取bean
             //先查询数据库，如果没有这一条记录，插入到数据库中

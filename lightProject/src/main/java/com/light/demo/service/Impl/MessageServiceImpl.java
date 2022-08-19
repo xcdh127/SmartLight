@@ -43,4 +43,9 @@ public class MessageServiceImpl implements MessageService {
     public int updateByPrimaryKey(Message record) {
         return messageMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public Message selectLastInsert() {
+        return messageMapper.selectLastInsert();
+    }
 }

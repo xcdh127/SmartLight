@@ -48,7 +48,7 @@ public class LightController {
         Message message = new Message();
         message.setMsg("修改灯箱参数");
         message.setStrength(strength);
-        message.setFrequency(frequency);
+//        message.setFrequency(frequency);
         String toJson = JsonUtils.toJsonString(message);
         mqttConnect.pub("com/iot/init", toJson, 1);
         model.addObject("success", true);
@@ -84,7 +84,7 @@ public class LightController {
         Message message = new Message();
         message.setMsg("修改灯箱参数");
         message.setStrength(strength);
-        message.setFrequency(light.getFrequency());
+//        message.setFrequency(light.getFrequency());
         String toJson = JsonUtils.toJsonString(message);
         mqttConnect.pub("com/iot/init", toJson, 1);
         model.addObject("success", true);
@@ -118,7 +118,7 @@ public class LightController {
         Message message = new Message();
         message.setMsg("修改灯箱参数");
         message.setStrength(light.getStrength());
-        message.setFrequency(frequency);
+//        message.setFrequency(frequency);
         String toJson = JsonUtils.toJsonString(message);
         mqttConnect.pub("com/iot/init", toJson, 1);
         model.addObject("success", true);
