@@ -82,7 +82,7 @@ public class LightController {
         model.addObject("frequency", light.getFrequency());
         model.addObject("messageStr", messageStr);
         Message message = new Message();
-        message.setMsg("修改灯箱参数");
+        message.setMsg("change_strength");
         message.setStrength(strength);
 //        message.setFrequency(light.getFrequency());
         String toJson = JsonUtils.toJsonString(message);
