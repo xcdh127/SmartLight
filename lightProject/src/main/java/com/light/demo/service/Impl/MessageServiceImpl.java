@@ -15,7 +15,7 @@ public class MessageServiceImpl implements MessageService {
     private MessageMapper messageMapper;
 
     @Override
-    public int deleteByPrimaryKey(Integer messageId) {
+    public int deleteByPrimaryKey(Long messageId) {
         return messageMapper.deleteByPrimaryKey(messageId);
     }
 
@@ -30,7 +30,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Message selectByPrimaryKey(Integer messageId) {
+    public Message selectByPrimaryKey(Long messageId) {
         return messageMapper.selectByPrimaryKey(messageId);
     }
 

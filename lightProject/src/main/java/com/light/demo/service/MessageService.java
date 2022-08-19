@@ -3,13 +3,13 @@ package com.light.demo.service;
 import com.light.demo.pojo.Message;
 
 public interface MessageService {
-    int deleteByPrimaryKey(Integer messageId);
+    int deleteByPrimaryKey(Long messageId);
 
     int insert(Message record);
 
     int insertSelective(Message record);
 
-    Message selectByPrimaryKey(Integer messageId);
+    Message selectByPrimaryKey(Long messageId);
 
     int updateByPrimaryKeySelective(Message record);
 

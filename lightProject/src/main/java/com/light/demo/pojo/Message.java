@@ -1,19 +1,21 @@
 package com.light.demo.pojo;
 
 public class Message {
-    private Integer messageId;
+    private Long messageId;
 
     private String msg;
 
     private Integer strength;
 
-    private Integer frequency;
+    private Integer temperature;
 
-    public Integer getMessageId() {
+    private Integer humidity;
+
+    public Long getMessageId() {
         return messageId;
     }
 
-    public void setMessageId(Integer messageId) {
+    public void setMessageId(Long messageId) {
         this.messageId = messageId;
     }
 
@@ -33,11 +35,19 @@ public class Message {
         this.strength = strength;
     }
 
-    public Integer getFrequency() {
-        return frequency;
+    public Integer getTemperature() {
+        return temperature;
     }
 
-    public void setFrequency(Integer frequency) {
-        this.frequency = frequency;
+    public void setTemperature(Integer temperature) {
+        this.temperature = temperature;
+    }
+
+    public Integer getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(Integer humidity) {
+        this.humidity = humidity;
     }
 }
