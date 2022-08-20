@@ -11,7 +11,7 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(new LogInterceptor()).addPathPatterns("/buttons");
         registry.addInterceptor(new LogInterceptor()).addPathPatterns("/default");
         registry.addInterceptor(new LogInterceptor()).addPathPatterns("/toWeiZhi");
-        registry.addInterceptor(new LogInterceptor()).addPathPatterns("/toXinXi");
+        registry.addInterceptor(new LogInterceptor()).addPathPatterns("/xinxi");
         registry.addInterceptor(new LogInterceptor()).addPathPatterns("/toDianLiang");
         super.addInterceptors(registry);
     }
