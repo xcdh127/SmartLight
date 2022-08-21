@@ -101,6 +101,11 @@ public class IndexController {
         return "zhexian";
     }
 
+    @RequestMapping("/location")
+    public String location() {
+        return "location";
+    }
+
     @RequestMapping("/xinxi")
     public ModelAndView xinxi() {
         ModelAndView model = new ModelAndView();
