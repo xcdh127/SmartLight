@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.light.demo.dao.MessageMapper">
+    <resultMap id="BaseResultMap" type="com.light.demo.pojo.Message">
+        <id column="message_id" jdbcType="BIGINT" property="messageId"/>
+        <result column="msg" jdbcType="VARCHAR" property="msg"/>
+        <result column="strength" jdbcType="INTEGER" property="strength"/>
+        <result column="temperature" jdbcType="INTEGER" property="temperature"/>
+        <result column="humidity" jdbcType="INTEGER" property="humidity"/>
+        <result column="date" jdbcType="VARCHAR" property="date"/>
+        <result column="energyUsed" jdbcType="DOUBLE" property="energyused"/>
+        <result column="jingdu" jdbcType="DOUBLE" property="jingdu"/>
+        <result column="weidu" jdbcType="DOUBLE" property="weidu"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    message_id, msg, strength, temperature, humidity, date, energyUsed, jingdu, weidu
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from message
+        where message_id = #{messageId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from message
+    where message_id = #{messageId,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.light.demo.pojo.Message">
+    insert into message (message_id, msg, strength, 
+      temperature, humidity, date, 
+      energyUsed, jingdu, weidu
+      )
+    values (#{messageId,jdbcType=BIGINT}, #{msg,jdbcType=VARCHAR}, #{strength,jdbcType=INTEGER}, 
+      #{temperature,jdbcType=INTEGER}, #{humidity,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}, 
+      #{energyused,jdbcType=DOUBLE}, #{jingdu,jdbcType=DOUBLE}, #{weidu,jdbcType=DOUBLE}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.light.demo.pojo.Message">
+        insert into message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="messageId != null">
+                message_id,
+            </if>
+            <if test="msg != null">
+                msg,
+            </if>
+            <if test="strength != null">
+                strength,
+            </if>
+            <if test="temperature != null">
+                temperature,
+            </if>
+            <if test="humidity != null">
+                humidity,
+            </if>
+            <if test="date != null">
+                date,
+            </if>
+            <if test="energyused != null">
+                energyUsed,
+            </if>
+            <if test="jingdu != null">
+                jingdu,
+            </if>
+            <if test="weidu != null">
+                weidu,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="messageId != null">
+                #{messageId,jdbcType=BIGINT},
+            </if>
+            <if test="msg != null">
+                #{msg,jdbcType=VARCHAR},
+            </if>
+            <if test="strength != null">
+                #{strength,jdbcType=INTEGER},
+            </if>
+            <if test="temperature != null">
+                #{temperature,jdbcType=INTEGER},
+            </if>
+            <if test="humidity != null">
+                #{humidity,jdbcType=INTEGER},
+            </if>
+            <if test="date != null">
+                #{date,jdbcType=VARCHAR},
+            </if>
+            <if test="energyused != null">
+                #{energyused,jdbcType=DOUBLE},
+            </if>
+            <if test="jingdu != null">
+                #{jingdu,jdbcType=DOUBLE},
+            </if>
+            <if test="weidu != null">
+                #{weidu,jdbcType=DOUBLE},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.light.demo.pojo.Message">
+        update message
+        <set>
+            <if test="msg != null">
+                msg = #{msg,jdbcType=VARCHAR},
+            </if>
+            <if test="strength != null">
+                strength = #{strength,jdbcType=INTEGER},
+            </if>
+            <if test="temperature != null">
+                temperature = #{temperature,jdbcType=INTEGER},
+            </if>
+            <if test="humidity != null">
+                humidity = #{humidity,jdbcType=INTEGER},
+            </if>
+            <if test="date != null">
+                date = #{date,jdbcType=VARCHAR},
+            </if>
+            <if test="energyused != null">
+                energyUsed = #{energyused,jdbcType=DOUBLE},
+            </if>
+            <if test="jingdu != null">
+                jingdu = #{jingdu,jdbcType=DOUBLE},
+            </if>
+            <if test="weidu != null">
+                weidu = #{weidu,jdbcType=DOUBLE},
+            </if>
+        </set>
+        where message_id = #{messageId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.light.demo.pojo.Message">
+    update message
+    set msg = #{msg,jdbcType=VARCHAR},
+      strength = #{strength,jdbcType=INTEGER},
+      temperature = #{temperature,jdbcType=INTEGER},
+      humidity = #{humidity,jdbcType=INTEGER},
+      date = #{date,jdbcType=VARCHAR},
+      energyUsed = #{energyused,jdbcType=DOUBLE},
+      jingdu = #{jingdu,jdbcType=DOUBLE},
+      weidu = #{weidu,jdbcType=DOUBLE}
+    where message_id = #{messageId,jdbcType=BIGINT}
+  </update>
+    <select id="selectLastInsert" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from message
+        ORDER BY message_id DESC LIMIT 1
+    </select>
+</mapper>
