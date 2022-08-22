@@ -1,0 +1,6 @@
+    <select id="selectLastInsert" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from message
+        ORDER BY message_id DESC LIMIT 1
+    </select>

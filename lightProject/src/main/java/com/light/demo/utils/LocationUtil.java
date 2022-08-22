@@ -12,8 +12,9 @@ import java.util.Map;
 
 public class LocationUtil {
     public static void main(String[] args) {
-        Map<String, Object> getcitydetailbyjingwei = getcitydetailbyjingwei(118.46566, 36.55001);
-        Object result = getcitydetailbyjingwei.get("result");
+       /* Map<String, Object> getcitydetailbyjingwei = getcitydetailbyjingwei(118.46566, 36.55001);
+        Object result = getcitydetailbyjingwei.get("result");*/
+        System.out.println(getUrl(112.44, 12.44));
     }
 
     public static Map<String, Object> getcitydetailbyjingwei(double jing, double wei) {
@@ -35,4 +36,9 @@ public class LocationUtil {
         }
         return map;
     }
+
+    public static String getUrl(double jingdu, double weidu) {
+        return "https://api.map.baidu.com/staticimage/v2?ak=OFluelPjpmdE1eeEkXDHK5ulHilNaKTq&width=512&height=512&zoom=11&scale=1&center=" + jingdu + "," + weidu + "&markers=" + jingdu + "," + weidu + "&markerStyles=l,A";
+    }
+
 }

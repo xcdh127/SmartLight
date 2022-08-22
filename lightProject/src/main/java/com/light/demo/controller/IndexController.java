@@ -4,9 +4,12 @@ import com.light.demo.pojo.Light;
 import com.light.demo.pojo.Message;
 import com.light.demo.service.LightService;
 import com.light.demo.service.MessageService;
+import com.light.demo.utils.ConvertLatLngIntoRegion;
+import com.light.demo.utils.LocationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -101,9 +104,24 @@ public class IndexController {
         return "zhexian";
     }
 
-    @RequestMapping("/location")
-    public String location() {
+    @RequestMapping("/tolocation")
+    public String tolocation() {
         return "location";
+    }
+
+    @RequestMapping("/location")
+    public ModelAndView location() {
+        ModelAndView model = new ModelAndView("location");
+        Message message = messageService.selectLastInsert();
+        double jingdu = message.getJingdu();
+        double weidu = message.getWeidu();
+        String location = ConvertLatLngIntoRegion.inverseGeocoding(String.valueOf(jingdu),String.valueOf(weidu));
+        String url = LocationUtil.getUrl(jingdu, weidu);
+        model.addObject("location", location);
+        model.addObject("jingdu", jingdu);
+        model.addObject("weidu", weidu);
+        model.addObject("url", url);
+        return model;
     }
 
     @RequestMapping("/xinxi")

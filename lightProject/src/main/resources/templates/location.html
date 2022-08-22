@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>智能照明-后台管理系统</title>
@@ -18,7 +18,25 @@
     <script src="/static/js/button.js"></script>
 </head>
 <body>
-<img style="margin:20px" width="800" height="400" src="https://api.map.baidu.com/staticimage/v2?ak=OFluelPjpmdE1eeEkXDHK5ulHilNaKTq&width=512&height=512&zoom=11&scale=1&center=${jingdu},${weidu}"/>
+<div class="layui-field-box" align="center">
+    <h1 align="center">当前设备位置</h1>
+    <div align="center" style="display: inline-block;width: 25%;">
+        <div class="ht-box layui-bg-blue">
+            <p>经纬度信息</p>
+            <p th:text="${jingdu}"></p>
+            <p th:text="${weidu}"></p>
+        </div>
+
+        <div class="ht-box layui-bg-red">
+            <p>精确位置信息</p>
+            <p th:text="${location}"></p>
+        </div>
+    </div>
+
+</div>
+<div align="center">
+    <img align="center" style="margin:20px" width="400" height="400" th:src="@{${url}}"/>
+</div>
 </body>
 </html>
 
