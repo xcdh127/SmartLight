@@ -1,16 +1,21 @@
 package com.light.demo.controller;
 
+import com.light.demo.pojo.Gongdan;
 import com.light.demo.pojo.Light;
 import com.light.demo.pojo.Message;
+import com.light.demo.service.GongdanService;
 import com.light.demo.service.LightService;
 import com.light.demo.service.MessageService;
 import com.light.demo.utils.ConvertLatLngIntoRegion;
 import com.light.demo.utils.LocationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class IndexController {
@@ -20,6 +25,9 @@ public class IndexController {
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private GongdanService gongdanService;
 
     @RequestMapping("/")
     public String index() {
@@ -115,7 +123,7 @@ public class IndexController {
         Message message = messageService.selectLastInsert();
         double jingdu = message.getJingdu();
         double weidu = message.getWeidu();
-        String location = ConvertLatLngIntoRegion.inverseGeocoding(String.valueOf(jingdu),String.valueOf(weidu));
+        String location = ConvertLatLngIntoRegion.inverseGeocoding(String.valueOf(jingdu), String.valueOf(weidu));
         String url = LocationUtil.getUrl(jingdu, weidu);
         model.addObject("location", location);
         model.addObject("jingdu", jingdu);
@@ -149,5 +157,40 @@ public class IndexController {
         return model;
     }
 
+    @RequestMapping("/dianliang")
+    public ModelAndView dianliang() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("dianliang");
+        Message message = messageService.selectLastInsert();
+        Double energyused = message.getEnergyused();
+        model.addObject("energyused", energyused);
+        return model;
+    }
+
+    @RequestMapping("/toone")
+    public String toone() {
+        return "one";
+    }
+
+    @RequestMapping("/tobuildgongdan")
+    public String tobuildgongdan() {
+        return "gongdan";
+    }
+
+    @RequestMapping("/togongdan")
+    public ModelAndView togongdan() {
+        ModelAndView model = new ModelAndView("gongdan");
+        List<Gongdan> list = gongdanService.list();
+        model.addObject("list", list);
+        return model;
+    }
+
+    @RequestMapping("/toedit")
+    public ModelAndView toedit() {
+        ModelAndView model = new ModelAndView("edit");
+//        Gongdan gongdan = gongdanService.selectByPrimaryKey(id);
+//        model.addObject("gongdan", gongdan);
+        return model;
+    }
 
 }

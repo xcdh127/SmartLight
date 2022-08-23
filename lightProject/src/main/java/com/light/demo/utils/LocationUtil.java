@@ -38,7 +38,9 @@ public class LocationUtil {
     }
 
     public static String getUrl(double jingdu, double weidu) {
-        return "https://api.map.baidu.com/staticimage/v2?ak=OFluelPjpmdE1eeEkXDHK5ulHilNaKTq&width=512&height=512&zoom=11&scale=1&center=" + jingdu + "," + weidu + "&markers=" + jingdu + "," + weidu + "&markerStyles=l,A";
+        String url = "https://api.map.baidu.com/staticimage/v2?ak=OFluelPjpmdE1eeEkXDHK5ulHilNaKTq&width=512&height=512&zoom=11&scale=1&center=" + jingdu + "," + weidu + "&markers=" + jingdu + "," + weidu + "&markerStyles=l,A";
+        System.out.println(url);
+        return url;
     }
 
 }
