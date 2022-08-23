@@ -8,7 +8,6 @@ import com.light.demo.pojo.Gongdan;
 import com.light.demo.service.GongdanService;
 import com.light.demo.utils.DateUtil;
 import com.light.demo.utils.MessageUtil;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 @Controller
 @RequestMapping("/gongdan")
@@ -36,15 +34,15 @@ public class GongdanController {
         String dateStr = DateUtil.getCurrentDateStr();
         gongdan.setBuildtime(dateStr);
         gongdan.setIsdone(0);
-        String str = tel.substring(tel.length()-6,tel.length());
-        System.out.println("{\"code\":\"" + str +"\"}");
+        String str = tel.substring(tel.length() - 6, tel.length());
+        System.out.println("{\"code\":\"" + str + "\"}");
         //发送短信
         com.aliyun.dysmsapi20170525.Client client = MessageUtil.createClient("", "");
         SendSmsRequest sendSmsRequest = new SendSmsRequest()
                 .setSignName("阿里云短信测试")
                 .setTemplateCode("SMS_154950909")
                 .setPhoneNumbers("")
-                .setTemplateParam("{\"code\":\"" + str +"\"}");
+                .setTemplateParam("{\"code\":\"" + str + "\"}");
         RuntimeOptions runtime = new RuntimeOptions();
         SendSmsResponse resp = client.sendSmsWithOptions(sendSmsRequest, runtime);
         com.aliyun.teaconsole.Client.log(com.aliyun.teautil.Common.toJSONString(TeaModel.buildMap(resp)));

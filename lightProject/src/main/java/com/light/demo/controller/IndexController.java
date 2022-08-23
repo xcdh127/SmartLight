@@ -92,11 +92,6 @@ public class IndexController {
         return "login";
     }
 
-    @RequestMapping("/toWeiZhi")
-    public String toWeiZhi() {
-        return "weizhi";
-    }
-
     @RequestMapping("/toXinXi")
     public String toXinXi() {
         return "xinxi";
@@ -107,10 +102,6 @@ public class IndexController {
         return "dianliang";
     }
 
-    @RequestMapping("/toZheXian")
-    public String toZheXian() {
-        return "zhexian";
-    }
 
     @RequestMapping("/tolocation")
     public String tolocation() {
@@ -123,7 +114,9 @@ public class IndexController {
         Message message = messageService.selectLastInsert();
         double jingdu = message.getJingdu();
         double weidu = message.getWeidu();
+        //获取精确的地理位置信息
         String location = ConvertLatLngIntoRegion.inverseGeocoding(String.valueOf(jingdu), String.valueOf(weidu));
+        //获取百度静态地图url地址
         String url = LocationUtil.getUrl(jingdu, weidu);
         model.addObject("location", location);
         model.addObject("jingdu", jingdu);
@@ -136,13 +129,18 @@ public class IndexController {
     public ModelAndView xinxi() {
         ModelAndView model = new ModelAndView();
         model.setViewName("xinxi");
+        //从数据库中获取最后一条插进来的数据
         Message message = messageService.selectLastInsert();
         String messageStr = "";
-        String messageFre = "";
+        //实时亮度信息
         model.addObject("strength", message.getStrength());
+        //实时温度信息
         model.addObject("temperature", message.getTemperature());
+        //实时湿度信息
         model.addObject("humidity", message.getHumidity());
-        if (message.getStrength() == 20) {
+        if (message.getStrength() == 0) {
+            messageStr = "关闭";
+        } else if (message.getStrength() == 20) {
             messageStr = "一档";
         } else if (message.getStrength() == 40) {
             messageStr = "二档";
@@ -153,6 +151,7 @@ public class IndexController {
         } else if (message.getStrength() == 100) {
             messageStr = "五档";
         }
+        //实时档位信息
         model.addObject("messageStr", messageStr);
         return model;
     }
@@ -161,7 +160,9 @@ public class IndexController {
     public ModelAndView dianliang() {
         ModelAndView model = new ModelAndView();
         model.setViewName("dianliang");
+        //获取插入数据库中的最后一条消息
         Message message = messageService.selectLastInsert();
+        //获取实时电量信息
         Double energyused = message.getEnergyused();
         model.addObject("energyused", energyused);
         return model;
