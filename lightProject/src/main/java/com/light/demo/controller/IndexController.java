@@ -188,8 +188,12 @@ public class IndexController {
     @RequestMapping("/toedit")
     public ModelAndView toedit() {
         ModelAndView model = new ModelAndView("edit");
-//        Gongdan gongdan = gongdanService.selectByPrimaryKey(id);
-//        model.addObject("gongdan", gongdan);
+        return model;
+    }
+
+    @RequestMapping("/todelete")
+    public ModelAndView todelete() {
+        ModelAndView model = new ModelAndView("delete");
         return model;
     }
 
