@@ -37,7 +37,7 @@ public class GongdanController {
         String str = tel.substring(tel.length() - 6, tel.length());
         System.out.println("{\"code\":\"" + str + "\"}");
         //发送短信
-        com.aliyun.dysmsapi20170525.Client client = MessageUtil.createClient("", "");
+        /*com.aliyun.dysmsapi20170525.Client client = MessageUtil.createClient("", "");
         SendSmsRequest sendSmsRequest = new SendSmsRequest()
                 .setSignName("阿里云短信测试")
                 .setTemplateCode("SMS_154950909")
@@ -45,7 +45,7 @@ public class GongdanController {
                 .setTemplateParam("{\"code\":\"" + str + "\"}");
         RuntimeOptions runtime = new RuntimeOptions();
         SendSmsResponse resp = client.sendSmsWithOptions(sendSmsRequest, runtime);
-        com.aliyun.teaconsole.Client.log(com.aliyun.teautil.Common.toJSONString(TeaModel.buildMap(resp)));
+        com.aliyun.teaconsole.Client.log(com.aliyun.teautil.Common.toJSONString(TeaModel.buildMap(resp)));*/
         log.info(dateStr + ",发送派工单，联系人电话：" + tel + ",派工事由：" + event);
         gongdanService.insert(gongdan);
         List<Gongdan> list = gongdanService.list();

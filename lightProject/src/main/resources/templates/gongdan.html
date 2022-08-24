@@ -37,7 +37,7 @@
     </div>
     <div class="row">
         <div class="col-md-4 column">
-            <a class="layui-btn  layui-btn-green layui-btn-xs" th:href="@{/toone}"><i
+            <a class="layui-btn  layui-btn-green layui-btn-xs" th:href="@{/toadd}"><i
                     class="layui-icon">&#xe654;</i>创建派工单</a>
         </div>
     </div>
@@ -68,7 +68,7 @@
                     <td th:text="${item.buildtime}"></td>
 
                     <td>
-<!--                        <a class="layui-btn  layui-btn-green layui-btn-xs" lay-event="top" topUrl="/admin/link/one.html"
+<!--                        <a class="layui-btn  layui-btn-green layui-btn-xs" lay-event="top" topUrl="/admin/link/add.html"
                            topMode="readonly" topWidth="800px" topHeight="400px" topTitle="查看友情链接" inputs="item.id"><i
                                 class="layui-icon">&#xe615;</i>查看</a>-->
                         <a class="layui-btn layui-btn-normal layui-btn-xs" th:href=@{/toedit} th:inputs="item.id"><i
@@ -134,10 +134,10 @@
                                     </script>
 
                                     <script type="text/html" id="barDemo">
-                                        <a class="layui-btn  layui-btn-green layui-btn-xs" lay-event="top" topUrl="/admin/link/one.html"
+                                        <a class="layui-btn  layui-btn-green layui-btn-xs" lay-event="top" topUrl="/admin/link/add.html"
                                            topMode="readonly" topWidth="800px" topHeight="400px" topTitle="查看友情链接" inputs="linkId:"><i
                                                 class="layui-icon">&#xe615;</i>查看</a>
-                                        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="top" topUrl="/admin/link/one.html"
+                                        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="top" topUrl="/admin/link/add.html"
                                            topMode="edit" topWidth="800px" topHeight="400px" topTitle="编辑友情链接" inputs="linkId:"><i
                                                 class="layui-icon">&#xe642;</i>编辑</a>
                                         <a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="submit" url="/admin/link/delete"

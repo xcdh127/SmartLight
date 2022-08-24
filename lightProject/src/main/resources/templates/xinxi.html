@@ -26,8 +26,8 @@
         </fieldset>
         <div style="display: inline-block;width: 25%;">
             <div class="ht-box layui-bg-blue">
-                <p>强度信息</p>
-                <p th:text="${strength}">%</p>
+                <p>强度信息(%)</p>
+                <p th:text="${strength}"></p>
                 <p th:text="${messageStr}"></p>
             </div>
             <!-- <div class="ht-box layui-bg-red">
@@ -40,12 +40,12 @@
                 <p th:text=100>kW·h</p>
             </div>-->
             <div class="ht-box layui-bg-green">
-                <p>温度</p>
-                <p th:text="${temperature}">℃</p>
+                <p>温度(℃)</p>
+                <p th:text="${temperature}"></p>
             </div>
             <div class="ht-box layui-bg-cyan">
-                <p>湿度</p>
-                <p th:text="${humidity}">%RH</p>
+                <p>湿度(%RH)</p>
+                <p th:text="${humidity}"></p>
             </div>
         </div>
     </div>

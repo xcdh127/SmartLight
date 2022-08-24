@@ -168,9 +168,9 @@ public class IndexController {
         return model;
     }
 
-    @RequestMapping("/toone")
+    @RequestMapping("/toadd")
     public String toone() {
-        return "one";
+        return "add";
     }
 
     @RequestMapping("/tobuildgongdan")
