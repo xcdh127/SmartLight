@@ -34,6 +34,8 @@ public class MQTTListener implements ApplicationListener<ContextRefreshedEvent> 
             server.sub("com/iot/init");
             server.sub("com/iot/message");
             server.sub("lqj");
+            server.sub("com/iot/error");
+            server.sub("com/iot/test");
             /*server.sub("/h84sWr7GXZw/aa22/user/com/iot/init");
             server.sub("/sys/h84sWr7GXZw/aa22/thing/service/property/set");*/
             //server.sub("/sys/h84sWr7GXZw/mzh001/thing/service/property/set");

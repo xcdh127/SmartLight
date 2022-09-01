@@ -133,8 +133,8 @@ public class LightController {
                                    @PathVariable Integer strength,
                                    @PathVariable Integer frequency) {
         Map<String, Object> map = new HashMap<>();
-        Light light = new Light(lightId, lightName, strength, frequency);
-        lightService.add(light);
+        //Light light = new Light(lightId, lightName, strength, frequency);
+        //lightService.add(light);
         map.put("errorNo", 0);
         return map;
     }

@@ -1,5 +1,9 @@
 package com.light.demo.mqtt;
 
+import com.light.demo.pojo.Error;
+import com.light.demo.pojo.Gongdan;
+import com.light.demo.service.ErrorService;
+import com.light.demo.service.GongdanService;
 import com.light.demo.utils.SpringUtil;
 import com.light.demo.pojo.Message;
 
@@ -58,6 +62,47 @@ public class Callback implements MqttCallback {
             //先查询数据库，如果没有这一条记录，插入到数据库中
             if (messageService.selectByPrimaryKey(meg.getMessageId()) == null) {
                 messageService.insert(meg);
+            }
+        }
+
+        if (topic.equals("com/iot/test")) {
+            String errorStr = new String(message.getPayload());
+            Error error = JsonUtils.parseJson(errorStr, Error.class);
+            ApplicationContext context = SpringUtil.context;  //获取Spring容器
+            ErrorService errorService = context.getBean(ErrorService.class);//获取bean
+            //保存错误信息到数据库
+            errorService.insertSelective(error);
+
+            if (error.getEnergyerror() == 1) {
+                System.out.println("用电量异常");
+                Gongdan gongdan=new Gongdan();
+                gongdan.setEvent("用电量异常");
+                gongdan.setBuildtime(DateUtil.getCurrentDateStr());
+                gongdan.setTel("123456789");
+                gongdan.setIsdone(0);
+                GongdanService gongdanService = context.getBean(GongdanService.class);//获取bean
+                gongdanService.insert(gongdan);
+                log.info("联系人电话：{},事件：{}",gongdan.getTel(),gongdan.getEvent());
+            } else if (error.getHumierror() == 1) {
+                System.out.println("湿度异常");
+                Gongdan gongdan=new Gongdan();
+                gongdan.setEvent("湿度异常");
+                gongdan.setBuildtime(DateUtil.getCurrentDateStr());
+                gongdan.setTel("123456789");
+                gongdan.setIsdone(0);
+                GongdanService gongdanService = context.getBean(GongdanService.class);//获取bean
+                gongdanService.insert(gongdan);
+                log.info("联系人电话：{},事件：{}",gongdan.getTel(),gongdan.getEvent());
+            } else if (error.getTemperror() == 1) {
+                System.out.println("温度异常");
+                Gongdan gongdan=new Gongdan();
+                gongdan.setEvent("温度异常");
+                gongdan.setBuildtime(DateUtil.getCurrentDateStr());
+                gongdan.setTel("123456789");
+                gongdan.setIsdone(0);
+                GongdanService gongdanService = context.getBean(GongdanService.class);//获取bean
+                gongdanService.insert(gongdan);
+                log.info("联系人电话：{},事件：{}",gongdan.getTel(),gongdan.getEvent());
             }
         }
     }
